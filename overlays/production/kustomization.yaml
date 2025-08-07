@@ -1,0 +1,27 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: production
+
+resources:
+  - ../../base
+  - postgres.yaml
+  - ingress.yaml
+  - external-secrets.yaml
+
+# This tells Kustomize which image to use
+images:
+  - name: ghcr.io/pakornbank/go-backend-example/go-auth-api
+    newTag: latest
+
+# Production-specific patches
+patchesStrategicMerge:
+  - deployment-patch.yaml
+
+# Production-specific configuration
+configMapGenerator:
+  - name: go-auth-config
+    behavior: merge
+    literals:
+      - DB_NAME=go_backend_db_prod
+# No secretGenerator here - secrets managed by External Secrets

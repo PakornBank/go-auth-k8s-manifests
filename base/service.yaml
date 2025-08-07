@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: go-auth-api-service
+  labels:
+    app: go-auth-api
+spec:
+  selector:
+    app: go-auth-api
+  ports:
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      name: http
+  type: ClusterIP # Internal service, traffic comes through ingress
