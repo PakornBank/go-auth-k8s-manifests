@@ -12,7 +12,7 @@ resources:
 # This tells Kustomize which image to use
 images:
   - name: ghcr.io/pakornbank/go-backend-example/go-auth-api
-    newTag: latest
+    newTag: main
 
 # Production-specific patches
 patchesStrategicMerge:
