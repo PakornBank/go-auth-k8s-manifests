@@ -24,4 +24,4 @@ configMapGenerator:
     behavior: merge
     literals:
       - DB_NAME=go_backend_db_prod
-# No secretGenerator here - secrets managed by External Secrets
+      - GIN_MODE=release
