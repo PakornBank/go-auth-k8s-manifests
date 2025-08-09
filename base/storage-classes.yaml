@@ -1,0 +1,14 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: gp3-basic
+provisioner: ebs.csi.aws.com
+volumeBindingMode: WaitForFirstConsumer
+parameters:
+  type: gp3
+  encrypted: "true"
+  # Using GP3 baseline (free tier)
+  iops: "3000" # Free baseline
+  throughput: "125" # Free baseline
+allowVolumeExpansion: true
+reclaimPolicy: Delete

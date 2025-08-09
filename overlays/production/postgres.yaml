@@ -11,7 +11,7 @@ spec:
   resources:
     requests:
       storage: 20Gi
-  storageClassName: gp3 # AWS EBS gp3 for better performance
+  storageClassName: gp3-basic # AWS EBS gp3 for better performance
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -55,10 +55,10 @@ spec:
               value: /var/lib/postgresql/data/pgdata
           resources:
             requests:
-              memory: "256Mi"
+              memory: "128Mi"
               cpu: "100m"
             limits:
-              memory: "1Gi"
+              memory: "512Mi"
               cpu: "500m"
           volumeMounts:
             - name: postgres-storage
