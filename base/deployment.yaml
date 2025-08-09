@@ -5,6 +5,7 @@ metadata:
   labels:
     app: go-auth-api
 spec:
+  revisionHistoryLimit: 1
   replicas: 2
   strategy:
     type: RollingUpdate
