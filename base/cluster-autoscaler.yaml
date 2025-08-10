@@ -1,0 +1,42 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cluster-autoscaler
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://kubernetes.github.io/autoscaler
+    chart: cluster-autoscaler
+    targetRevision: 9.37.0
+    helm:
+      values: |
+        autoDiscovery:
+          clusterName: go-auth-cluster
+        awsRegion: ap-southeast-2
+        serviceAccount:
+          create: true
+          annotations:
+            eks.amazonaws.com/role-arn: "arn:aws:iam::533267433891:role/ClusterAutoscalerRole"
+        resources:
+          limits:
+            cpu: 100m
+            memory: 600Mi
+          requests:
+            cpu: 100m
+            memory: 600Mi
+        extraArgs:
+          skip-nodes-with-local-storage: false
+          expander: least-waste
+          balance-similar-node-groups: true
+        nodeSelector:
+          kubernetes.io/os: linux
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kube-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
