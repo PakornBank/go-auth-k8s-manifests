@@ -15,6 +15,3 @@ spec:
             limits:
               memory: "512Mi"
               cpu: "500m"
-      env:
-        - name: GIN_MODE
-          value: "release"
