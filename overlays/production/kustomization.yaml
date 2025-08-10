@@ -24,4 +24,3 @@ configMapGenerator:
     behavior: merge
     literals:
       - DB_NAME=go_backend_db_prod
-      - GIN_MODE=release

@@ -20,6 +20,8 @@ spec:
       labels:
         app: go-auth-api
     spec:
+      imagePullSecrets:
+        - name: ghcr-secret
       # Security context to run as non-root
       securityContext:
         runAsNonRoot: true

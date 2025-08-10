@@ -11,7 +11,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/PakornBank/go-auth-k8s-manifests
+    repoURL: git@github.com:PakornBank/go-auth-k8s-manifests.git
     targetRevision: HEAD
     path: overlays/production
   destination:
